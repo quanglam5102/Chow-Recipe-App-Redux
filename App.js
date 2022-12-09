@@ -9,6 +9,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   console.log("hellow world")
+  console.log("testing git")
   return (
     <Provider store={store}>
       <NavigationContainer>
