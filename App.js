@@ -8,18 +8,15 @@ import AssetExample from './components/AssetExample';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  console.log("Change")
-  console.log("hello world")
-  console.log("hello world2")
   return (
     <Provider store={store}>
       <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Products" component={Products} />
         <Stack.Screen name="AssetExample" component={AssetExample} />
-        <Stack.Screen name = "Login" component={Login}/>
+        {/* <Stack.Screen name = "Login" component={Login}/>
         <Stack.Screen name = "Recipes" component={RecipeList}/>
-        <Stack.Screen name = "Login" component={Login}/>
+        <Stack.Screen name = "Login" component={Login}/> */}
         
       </Stack.Navigator>
     </NavigationContainer>
