@@ -14,7 +14,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Products" component={Products} />
+        <Stack.Screen name="Product" component={Product} />
         <Stack.Screen name="AssetExample" component={AssetExample} />
         {/* <Stack.Screen name = "Login" component={Login}/>
         <Stack.Screen name = "Recipes" component={RecipeList}/>
