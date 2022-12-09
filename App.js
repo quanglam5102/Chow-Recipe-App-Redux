@@ -8,6 +8,7 @@ import AssetExample from './components/AssetExample';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  console.log("Change")
   return (
     <Provider store={store}>
       <NavigationContainer>
