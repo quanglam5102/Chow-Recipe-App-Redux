@@ -8,6 +8,7 @@ import AssetExample from './components/AssetExample';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  console.log("hellow world")
   return (
     <Provider store={store}>
       <NavigationContainer>
