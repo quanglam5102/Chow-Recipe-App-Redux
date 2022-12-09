@@ -9,6 +9,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   console.log("Change")
+  console.log("hello world")
   return (
     <Provider store={store}>
       <NavigationContainer>
