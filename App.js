@@ -8,20 +8,42 @@ import AssetExample from './components/AssetExample';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  console.log("hellow world")
-  console.log("testing git")
   return (
     <Provider store={store}>
-      <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Product" component={Product} />
-        <Stack.Screen name="AssetExample" component={AssetExample} />
-        {/* <Stack.Screen name = "Login" component={Login}/>
-        <Stack.Screen name = "Recipes" component={RecipeList}/>
-        <Stack.Screen name = "Login" component={Login}/> */}
-        
-      </Stack.Navigator>
+     <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="Signup" 
+            component={SignupScreen}
+            options={
+              {title: "Sign Up Page"}
+            }
+            />
+          <Stack.Screen 
+            name="Category"
+            component={Category}
+            options={
+              {title: "All Meal Categories"}
+            }
+          />
+           {/* <Stack.Screen 
+            name=""
+            component={}
+            options={
+              {title: ""}
+            }
+          />
+          <Stack.Screen
+            name=""
+            component={}
+            options={
+              {title: ""}
+            }
+          /> */}
+        </Stack.Navigator>
     </NavigationContainer>
     </Provider>
+
   );
 }
+
