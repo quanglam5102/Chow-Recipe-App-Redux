@@ -32,7 +32,7 @@ function SignupScreen({ navigation }) {
   ];
   return (
     <View style={styles.container}>
-    <Image style={styles.logo} source={require('./logo.png')} />
+    <Image style={styles.logo} source={require('../assets/logo.png')} />
     <Text>Sign Up To Start </Text>
       <TextInput
         style={styles.input}
@@ -76,7 +76,7 @@ function SignupScreen({ navigation }) {
         visible={showModal}
         onRequestClose={() => {}}>
         <View style={styles.container}>
-        <Image style={styles.logo} source={require('./logo.png')} />
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
       <Text style={styles.modalText}>
             You have successfully signed up and created a chow account! Click Start and enjoy learning more recipes with us.
           </Text>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     fontSize:25,
-    fontFamily: "monospace"
+    // fontFamily: "arial"
     
   },
     seperator: { margin: 10 }
