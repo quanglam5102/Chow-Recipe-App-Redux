@@ -7,22 +7,47 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register'; 
 import Recipes from './components/Recipes';
+import SignupScreen from './components/SignupScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  console.log("hellow world")
   return (
     <Provider store={store}>
-      <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name = "Login" component={Login}/>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name = "Register" component={Register}/>
-        <Stack.Screen name = "Recipes" component={Recipes}/>
-        <Stack.Screen name="Products" component={Products} />
-      </Stack.Navigator>
+     <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="Signup" 
+            component={SignupScreen}
+            options={
+              {title: "Sign Up Page"}
+            }
+            />
+          <Stack.Screen 
+            name="Category"
+            component={Category}
+            options={
+              {title: "All Meal Categories"}
+            }
+          />
+           {/* <Stack.Screen 
+            name=""
+            component={}
+            options={
+              {title: ""}
+            }
+          />
+          <Stack.Screen
+            name=""
+            component={}
+            options={
+              {title: ""}
+            }
+          /> */}
+        </Stack.Navigator>
     </NavigationContainer>
     </Provider>
+
   );
 }
+
