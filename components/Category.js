@@ -48,7 +48,7 @@ export default function Category() {
             <Card.Cover source={{ uri: meal.strCategoryThumb }} />
             <Card.Title style={{ backgroundColor: 'beige'}} title={meal.strCategory} />
             <Card.Content>
-              <Paragraph style={{ backgroundColor: 'beige'}}>{meal.strCategoryDescription}</Paragraph>
+              <Paragraph style={{ backgroundColor: 'white'}}>{meal.strCategoryDescription}</Paragraph>
             </Card.Content>
           </Card>
         ))}
