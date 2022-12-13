@@ -8,6 +8,8 @@ import Login from './components/Login';
 import Register from './components/Register'; 
 import Recipes from './components/Recipes';
 import SignupScreen from './components/SignupScreen';
+import Category from './components/Category';
+import SearchById from './components/SearchById';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,14 +29,11 @@ export default function App() {
             name="Category"
             component={Category}
             />
-           {/* <Stack.Screen 
-            name=""
-            component={}
-            options={
-              {title: ""}
-            }
+            <Stack.Screen 
+            name="SearchById"
+            component={SearchById}
           />
-          <Stack.Screen
+          {/*<Stack.Screen
             name=""
             component={}
             options={

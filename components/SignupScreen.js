@@ -66,7 +66,7 @@ function SignupScreen({ navigation }) {
       <Seperator/> 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Signup')}>
+        onPress={() => navigation.navigate('SearchById')}>
         <Text style={styles.buttonText}> Begin</Text>
       </TouchableOpacity>
 
