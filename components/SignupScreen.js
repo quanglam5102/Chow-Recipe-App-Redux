@@ -69,6 +69,11 @@ function SignupScreen({ navigation }) {
         onPress={() => navigation.navigate('SearchById')}>
         <Text style={styles.buttonText}> Begin</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Category')}>
+        <Text style={styles.buttonText}> Category</Text>
+      </TouchableOpacity>
 
       <Modal
         animationType="slide"

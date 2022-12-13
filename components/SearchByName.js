@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import {
   SafeAreaView,
@@ -8,12 +8,18 @@ import {
   FlatList,
   TextInput,
   Alert,
+  Animated,
+  Easing,
 } from 'react-native';
 
 const SearchByName = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
+
+  const vector = useRef(new Animated.ValueXY({ x: 5, y: 200 })).current; useEffect(() => {
+    Animated.timing(vector, { easing: Easing.bounce, toValue: 10, duration: 2000, useNativeDriver: false}).start();
+  },);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -30,11 +36,11 @@ const SearchByName = () => {
 
 
   const searchFilterFunction = (text) => {
-// console.log(masterDataSource)
+    // console.log(masterDataSource)
     if (text) {
-     
+
       const newData = masterDataSource.filter(function (item) {
-        
+
         const itemData = item.strMeal
           ? item.strMeal.toUpperCase()
           : ''.toUpperCase();
@@ -50,7 +56,7 @@ const SearchByName = () => {
     }
   };
 
-// the item
+  // the item
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
@@ -75,13 +81,26 @@ const SearchByName = () => {
 
   const getItem = (item) => {
     // Function for click on an item
-    Alert.alert('Meal Details','Meal : ' + item.strMeal + '  Category : ' + item.strCategory +' Instruction: '+ item.strInstructions );
+    Alert.alert('Meal Details', 'Meal : ' + item.strMeal + '  Category : ' + item.strCategory + ' Instruction: ' + item.strInstructions);
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor:'#ffffff', }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff', }}>
       <View style={styles.container}>
-      <Text style={styles.sHeader}>Search by name</Text>
+        <Animated.View
+          style={{
+            position: 'center',
+            top: vector.x,
+            left: vector.y,
+            backgroundColor: '#6B1818',
+            padding: 20,
+            borderRadius: 20,
+            margin: 20,
+
+          }}>
+          <Text style={styles.ani}>Search By Name</Text>
+        </Animated.View>
+        {/* <Text style={styles.sHeader}>Search by name</Text> */}
         <TextInput
           style={styles.textInputStyle}
           onChangeText={(text) => searchFilterFunction(text)}
@@ -114,17 +133,17 @@ const styles = StyleSheet.create({
     margin: 5,
     borderColor: '#6B1818',
     backgroundColor: '#FFFFFF',
-    borderRadius:20,
-    
-   
+    borderRadius: 20,
+
+
   },
-  sHeader:{
-    fontSize:40,
-    color:'#6B1818',
-    
+  sHeader: {
+    fontSize: 40,
+    color: '#6B1818',
+
   }
 });
 
 export default SearchByName;
 
-   
+

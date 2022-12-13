@@ -11,6 +11,8 @@ import SignupScreen from './components/SignupScreen';
 import Category from './components/Category';
 import SearchById from './components/SearchById';
 import SearchByName from './components/SearchByName';
+import SearchByArea from './components/SearchByArea';
+import RandomMeal from './components/RandomMeal';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,14 @@ export default function App() {
           <Stack.Screen
             name="SearchByName"
             component={SearchByName}
+          />
+          <Stack.Screen
+            name="SearchByArea"
+            component={SearchByArea}
+          />
+          <Stack.Screen
+            name="RandomMeal"
+            component={RandomMeal}
           />
         </Stack.Navigator>
     </NavigationContainer>

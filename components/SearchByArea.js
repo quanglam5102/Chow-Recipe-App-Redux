@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react'
 import { Button, View, Text, TextInput, StyleSheet, Image, TouchableOpacity,
-Modal, Alert, SectionList, } from 'react-native';
+Modal, Alert, FlatList, } from 'react-native';
 
 function SearchByArea({ navigation }) { 
   const [area, setArea] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [meal, setMeal] = useState({});
+  const [meals, setMeal] = useState([]);
 
   const search = () => {
     setMeal({})
@@ -15,24 +15,22 @@ function SearchByArea({ navigation }) {
     .then(result => {
 
         if(result.meals == null) {
-            console.log('hello world');
             setShowModal(!showModal);
         }
         else {
-            setMeal(result.meals[0])
+            setMeal(result.meals)
         }
     })
   }
 
-  const renderMeal = () => {
+  const renderMealByArea = ({ item }) => {
     return (
       <View style={{marginTop: 10}}>
         <View style={{ borderBottomColor: 'black', borderWidth: 1, margin: 5 }} />
-        <Text>Name: {meal.strMeal}</Text>
-        <Text>Category: {meal.strCategory}</Text>
-        <Text>Area: {meal.strArea}</Text>
+        <Text>Id: {item.idMeal}</Text>
+        <Text>Name: {item.strMeal}</Text>
         <Image style={styles.image} source={{
-        uri: meal.strMealThumb
+        uri: item.strMealThumb
       }} />
       </View>
     )
@@ -52,7 +50,12 @@ function SearchByArea({ navigation }) {
             onPress={search}>
             <Text style={styles.buttonText}> Search </Text>
         </TouchableOpacity>
-        {Object.keys(meal).length > 0 ? renderMeal() : null}
+        {/* {Object.keys(meal).length > 0 ? renderMeal() : null} */}
+        <FlatList
+        style={{ height: '30%' }}
+        data={meals}
+        renderItem={renderMealByArea}
+        />
         <Modal
             animationType="slide"
             transparent={false}
