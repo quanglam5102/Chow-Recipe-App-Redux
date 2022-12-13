@@ -10,6 +10,7 @@ import Recipes from './components/Recipes';
 import SignupScreen from './components/SignupScreen';
 import Category from './components/Category';
 import SearchById from './components/SearchById';
+import SearchByName from './components/SearchByName';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,13 +34,10 @@ export default function App() {
             name="SearchById"
             component={SearchById}
           />
-          {/*<Stack.Screen
-            name=""
-            component={}
-            options={
-              {title: ""}
-            }
-          /> */}
+          <Stack.Screen
+            name="SearchByName"
+            component={SearchByName}
+          />
         </Stack.Navigator>
     </NavigationContainer>
     </Provider>

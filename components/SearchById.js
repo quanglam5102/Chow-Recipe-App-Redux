@@ -15,13 +15,16 @@ function SearchById({ navigation }) {
     .then(result => {
 
         if(result.meals == null) {
-            console.log('hello world');
             setShowModal(!showModal);
         }
         else {
             setMeal(result.meals[0])
         }
     })
+  }
+
+  const handleNavigate = () => {
+    navigation.navigate('SearchByName')
   }
 
   const renderMeal = () => {
@@ -51,6 +54,11 @@ function SearchById({ navigation }) {
             style={styles.button}
             onPress={search}>
             <Text style={styles.buttonText}> Search </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={handleNavigate}>
+            <Text style={styles.buttonText}> Search By Name </Text>
         </TouchableOpacity>
         {Object.keys(meal).length > 0 ? renderMeal() : null}
         <Modal
