@@ -23,13 +23,10 @@ export default function App() {
               {title: "Sign Up Page"}
             }
             />
-          {/* <Stack.Screen 
+          <Stack.Screen 
             name="Category"
             component={Category}
-            options={
-              {title: "All Meal Categories"}
-            } 
-            /> */}
+            />
            {/* <Stack.Screen 
             name=""
             component={}
