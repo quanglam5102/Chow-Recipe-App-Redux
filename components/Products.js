@@ -37,8 +37,8 @@ const Products = ({ navigation, route, products, fetchProductsToComponent, cartP
   return (
     <View>
       <Button title="Reset Cart" onPress={() => resetCart()} />
-      <Button title="Go to AssetExample Page" onPress={() => {
-        navigation.navigate("AssetExample", {message: 'message from Product page'})
+      <Button title="Go to Home Page" onPress={() => {
+        navigation.navigate("Home")
       }} />
       <Text>{route?.params?.message ?? undefined ? route.params.message : ""}</Text>
       <Text style={{ fontWeight: "bold", fontSize: 26 }}>Products</Text>
