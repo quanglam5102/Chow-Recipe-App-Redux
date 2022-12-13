@@ -11,6 +11,7 @@ export default function App() {
   console.log("Change")
   console.log("hello world")
   console.log("hello world2")
+  console.log("hello world34")
   return (
     <Provider store={store}>
       <NavigationContainer>
