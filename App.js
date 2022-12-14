@@ -17,7 +17,6 @@ import RandomMeal from './components/RandomMeal';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  console.log('hello')
   return (
     <Provider store={store}>
      <NavigationContainer>
@@ -48,6 +47,10 @@ export default function App() {
           <Stack.Screen
             name="RandomMeal"
             component={RandomMeal}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
           />
         </Stack.Navigator>
     </NavigationContainer>

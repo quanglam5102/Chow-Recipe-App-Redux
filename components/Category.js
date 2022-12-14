@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Appbar, Searchbar, Paragraph, Card } from 'react-native-paper';
 
-export default function Category() {
+export default function Category({navigation}) {
   const [meals, setMeals] = useState([]);
   const [search, setSearch] = useState('');
   const url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
@@ -18,21 +18,27 @@ export default function Category() {
   }, []);
 
   const onChangeSearch = (query) => setSearch(query);
-  console.log(meals)
   return (
     <View>
+      <TouchableOpacity
+        style={styles.reviewbutton}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={{fontSize: 20, left: 300}}>
+            Home
+          </Text>
+      </TouchableOpacity>
       <Appbar style={{ backgroundColor: '#6B1818'}}>
       {/* button for navigation, with the styling 
       to place the button in the top right corner. 
       Left the navigation empty for whatever the next page might be
       */}
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.reviewbutton}
         onPress={() => navigation.navigate('')}>
         <Text style={{fontSize: 20, left: 300}}>
             Next
           </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
         <Appbar.Content title="Chow!" textAlign="center" />
         <Appbar.Header
           style={{ backgroundColor: '#6B1818'}}></Appbar.Header>

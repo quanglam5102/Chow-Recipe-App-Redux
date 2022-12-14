@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import * as React from 'react';
-import StarRating from 'react-native-star-rating-widget';
+// import StarRating from 'react-native-star-rating-widget';
 import {
   View,
   Text,
@@ -13,12 +13,12 @@ import {
   Button,
   Alert
 } from 'react-native';
-import { Appbar} from 'react-native-paper';
+// import { Appbar} from 'react-native-paper';
 
 function Seperator() {
   return <View style={styles.seperator}></View>;
 }
-function HomeScreen({ navigation }) {
+function HomeScreen() {
     const [showModal, setShowModal] = useState(false);
     var button1 = [
     {
@@ -31,7 +31,7 @@ function HomeScreen({ navigation }) {
   ]; 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('./logo.png')} />
+      <Image style={styles.logo} source={require('../assets/logo.png')} />
          <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -49,7 +49,7 @@ function HomeScreen({ navigation }) {
         visible={showModal}
         onRequestClose={() => {}}>
         <View style={styles.container}>
-        <Image style={styles.logo} source={require('./logo.png')} />
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
       <Text style={styles.modalText}>
             Welcome to CHOW food recipes where you’ll be able to learn how to make amazing dishes with the help of our many features. You’ll be able to browse through dozens of recipes with the ingredients to go with it. You’ll also be able to search for specific meals you want to to enjoy from all over the world all here. We love to make cooking EASY!
           </Text>
@@ -58,11 +58,11 @@ function HomeScreen({ navigation }) {
       </Modal>
          <Seperator/>
          <ScrollView>
-      <Image style={styles.logo} source={require('./pasta.jpeg')} />
-       <Image style={styles.logo} source={require('./sushi.jpeg')} />
-       <Image style={styles.logo} source={require('./noodles.jpeg')} />
-       <Image style={styles.logo} source={require('./rice.jpeg')} />
-       <Image style={styles.logo} source={require('./sandwitch.jpeg')} />
+      <Image style={styles.logo} source={require('../assets/pasta.jpeg')} />
+       <Image style={styles.logo} source={require('../assets/sushi.jpeg')} />
+       <Image style={styles.logo} source={require('../assets/noodles.jpeg')} />
+       <Image style={styles.logo} source={require('../assets/rice.jpeg')} />
+       <Image style={styles.logo} source={require('../assets/sandwitch.jpeg')} />
        </ScrollView>
     </View>
   );
