@@ -9,11 +9,12 @@ import {
   FlatList,
   TextInput,
   Animated,
-  Easing
+  Easing,
+  TouchableOpacity
  
 } from 'react-native';
 
-const SearchByName = () => {
+const SearchByName = ({ navigation }) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
@@ -80,6 +81,11 @@ console.log(masterDataSource)
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:'beige', }}>
       <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('SearchByName')}>
+        <Text style={styles.buttonText}> Next </Text>
+      </TouchableOpacity>
       <Animated.View        
     style={{          
       position: 'center',          
@@ -131,8 +137,7 @@ const styles = StyleSheet.create({
     borderRadius:20,
     borderColor: '#6E8898',
     color:'#6E8898',
-    margin: 10,
-    
+    margin: 10, 
     
   },
   textInputStyle: {
@@ -143,12 +148,7 @@ const styles = StyleSheet.create({
     borderColor: '#6E8898',
     backgroundColor: '#FFFFFF',
     borderRadius:20,
-    color:'#6E8898',
-    
-    
-    
-    
-   
+    color:'#6E8898', 
   },
   ani:{
     fontSize:23,
@@ -156,10 +156,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    
-  
 
-  }
+  },
+  buttonText:{
+    fontSize:20,
+    color:'#6E8898',
+}
   
 });
 
