@@ -7,13 +7,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  StatusBar,
   ScrollView,
   Modal,
   Button,
   Alert
 } from 'react-native';
-// import { Appbar} from 'react-native-paper';
+
 
 function Seperator() {
   return <View style={styles.seperator}></View>;
@@ -31,6 +30,12 @@ function HomeScreen() {
   ]; 
   return (
     <View style={styles.container}>
+       <ScrollView>
+       <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.buttonText}> Next </Text>
+      </TouchableOpacity>
       <Image style={styles.logo} source={require('../assets/logo.png')} />
          <TouchableOpacity
         style={styles.button}
@@ -57,7 +62,7 @@ function HomeScreen() {
         </View>
       </Modal>
          <Seperator/>
-         <ScrollView>
+        
       <Image style={styles.logo} source={require('../assets/pasta.jpeg')} />
        <Image style={styles.logo} source={require('../assets/sushi.jpeg')} />
        <Image style={styles.logo} source={require('../assets/noodles.jpeg')} />
