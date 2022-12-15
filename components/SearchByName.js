@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
+import { useEffect, useState,useRef } from 'react';
 
 import {
   SafeAreaView,
@@ -7,19 +8,15 @@ import {
   View,
   FlatList,
   TextInput,
-  Alert,
   Animated,
-  Easing,
+  Easing
+ 
 } from 'react-native';
 
 const SearchByName = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
-
-  const vector = useRef(new Animated.ValueXY({ x: 5, y: 200 })).current; useEffect(() => {
-    Animated.timing(vector, { easing: Easing.bounce, toValue: 10, duration: 2000, useNativeDriver: false}).start();
-  },);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -35,16 +32,19 @@ const SearchByName = () => {
 
 
 
+//  A filter to match the text that you inserted
   const searchFilterFunction = (text) => {
-    // console.log(masterDataSource)
+console.log(masterDataSource)
     if (text) {
-
+     
       const newData = masterDataSource.filter(function (item) {
-
+         
+        
         const itemData = item.strMeal
           ? item.strMeal.toUpperCase()
           : ''.toUpperCase();
         const textData = text.toUpperCase();
+        
         return itemData.indexOf(textData) > -1;
       });
       setFilteredDataSource(newData);
@@ -56,7 +56,7 @@ const SearchByName = () => {
     }
   };
 
-  // the item
+// the item
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
@@ -66,41 +66,39 @@ const SearchByName = () => {
     );
   };
 
-  const ItemSeparatorView = () => {
-    return (
-      // Flat List Item Separator
-      <View
-        style={{
-          height: 0.5,
-          width: '100%',
-          backgroundColor: '#f5ebe0',
-        }}
-      />
-    );
-  };
+ 
 
   const getItem = (item) => {
     // Function for click on an item
-    Alert.alert('Meal Details', 'Meal : ' + item.strMeal + '  Category : ' + item.strCategory + ' Instruction: ' + item.strInstructions);
+    alert('Meal : ' + item.strMeal + '  Category : ' + item.strCategory +' Instruction: '+ item.strInstructions );
   };
 
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff', }}>
-      <View style={styles.container}>
-        <Animated.View
-          style={{
-            position: 'center',
-            top: vector.x,
-            left: vector.y,
-            backgroundColor: '#6B1818',
-            padding: 20,
-            borderRadius: 20,
-            margin: 20,
+  const header = useRef(new Animated.ValueXY({ x:5 , y: 200 })).current;  useEffect(() => {    
+    Animated.timing(header, {easing: Easing.bounce,toValue: 10,duration: 1000,}).start();
+  }, );
 
-          }}>
-          <Text style={styles.ani}>Search By Name</Text>
-        </Animated.View>
-        {/* <Text style={styles.sHeader}>Search by name</Text> */}
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor:'beige', }}>
+      <View style={styles.container}>
+      <Animated.View        
+    style={{          
+      position: 'center',          
+      top: header.x,          
+      left: header.y,          
+      backgroundColor: '#6E8898',         
+      padding: 20,     
+      borderRadius:30,
+       margin: 25,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      
+       }}>        
+       <Text style={styles.ani}>Search Recipe By Name</Text>      
+       </Animated.View>
+      
+      
+
         <TextInput
           style={styles.textInputStyle}
           onChangeText={(text) => searchFilterFunction(text)}
@@ -111,7 +109,7 @@ const SearchByName = () => {
         <FlatList
           data={filteredDataSource}
           keyExtractor={(_item, index) => index.toString()}
-          // ItemSeparatorComponent={ItemSeparatorView}
+          
           renderItem={ItemView}
         />
       </View>
@@ -121,29 +119,48 @@ const SearchByName = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
+    backgroundColor: 'beige',
   },
   itemStyle: {
+    fontSize:15,
     padding: 10,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth:1,
+    borderRadius:20,
+    borderColor: '#6E8898',
+    color:'#6E8898',
+    margin: 10,
+    
+    
   },
   textInputStyle: {
-    height: 70,
+    height: 50,
     borderWidth: 1,
-    paddingLeft: 20,
-    margin: 5,
-    borderColor: '#6B1818',
+    paddingLeft: 110,
+    margin: 1,
+    borderColor: '#6E8898',
     backgroundColor: '#FFFFFF',
-    borderRadius: 20,
-
-
+    borderRadius:20,
+    color:'#6E8898',
+    
+    
+    
+    
+   
   },
-  sHeader: {
-    fontSize: 40,
-    color: '#6B1818',
+  ani:{
+    fontSize:23,
+    color:'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  
 
   }
+  
 });
 
 export default SearchByName;
-
-
