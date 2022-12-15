@@ -17,7 +17,7 @@ import {
 function Seperator() {
   return <View style={styles.seperator}></View>;
 }
-function HomeScreen() {
+function HomeScreen({ navigation }) {
     const [showModal, setShowModal] = useState(false);
     var button1 = [
     {
