@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addUser, fetchSearchById } from '../redux/actions/index';
 import { Button, View, Text, TextInput, StyleSheet, Image, TouchableOpacity,
-Modal,
-Alert, } from 'react-native';
+Modal, } from 'react-native';
 
 const NotFound = () => {
   return (
