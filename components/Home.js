@@ -1,6 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import * as React from 'react';
-// import StarRating from 'react-native-star-rating-widget';
 import {
   View,
   Text,
@@ -10,13 +9,29 @@ import {
   ScrollView,
   Modal,
   Button,
-  Alert
+  Alert,
+  Animated
 } from 'react-native';
 
 
 function Seperator() {
   return <View style={styles.seperator}></View>;
 }
+const FadeIn = (props) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 5000,
+    }).start();
+  }, [fadeAnim]);
+
+  return (
+    <Animated.View style={{ opacity: fadeAnim }}>
+      {props.children}
+    </Animated.View>
+  );
+};
 function HomeScreen({ navigation }) {
     const [showModal, setShowModal] = useState(false);
     var button1 = [
@@ -28,15 +43,18 @@ function HomeScreen({ navigation }) {
     },
     { text: 'No', onPress: () => {} },
   ]; 
+  const logo = useRef(new Animated.ValueXY({ x: 5, y: 200 })).current;
+  useEffect(() => {});
   return (
     <View style={styles.container}>
        <ScrollView>
        <TouchableOpacity
-        style={styles.button}
         onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}> Next </Text>
       </TouchableOpacity>
-      <Image style={styles.logo} source={require('../assets/logo.png')} />
+      <FadeIn>
+      <Image style={styles.logo} source={require('./logo.png')} />
+      </FadeIn>
          <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -54,7 +72,7 @@ function HomeScreen({ navigation }) {
         visible={showModal}
         onRequestClose={() => {}}>
         <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/logo.png')} />
+        <Image style={styles.logo} source={require('./logo.png')} />
       <Text style={styles.modalText}>
             Welcome to CHOW food recipes where you’ll be able to learn how to make amazing dishes with the help of our many features. You’ll be able to browse through dozens of recipes with the ingredients to go with it. You’ll also be able to search for specific meals you want to to enjoy from all over the world all here. We love to make cooking EASY!
           </Text>
@@ -75,7 +93,7 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FCFBE0',
-    padding: 20,
+    padding: 30,
     flex: 1,
     alignItems: 'center', 
     justifyContent: 'center',
@@ -91,7 +109,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '70%',
+    width: '100%',
     backgroundColor: '#6E8898',
     shadowColor: '#6E8898',
     shadowOpacity: 0.9,
@@ -103,7 +121,7 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     fontSize:20,
-    color:'#6E8898',
+    
   },
   modalText:{
     fontSize: 20
