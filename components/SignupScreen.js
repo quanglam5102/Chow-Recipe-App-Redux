@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 25,
-    // fontFamily: "arial"
+    color:'white',
+    
 
   },
   seperator: { margin: 10 }

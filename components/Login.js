@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     fontSize:25,
+    color:'white',
     
   },
     seperator: { margin: 10 }
