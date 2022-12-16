@@ -125,14 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '50%',
-    backgroundColor: '##6E8898',
-    shadowColor: '##6E8898',
-    shadowOpacity: 0.9,
-    shadowOffset: {
-      height: 10,
-      width: 10,
-    },
-    shadowRadius: 25,
+    backgroundColor: '#9FB1BC',
   },
   buttonText: {
     fontSize: 25,
