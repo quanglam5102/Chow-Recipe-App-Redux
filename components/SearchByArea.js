@@ -39,7 +39,7 @@ function SearchByArea({ navigation }) {
   return (
     <View style={styles.container}>
         {/* <Image style={styles.logo} source={require('../assets/logo.png')} /> */}
-        <Text>Enter the area below </Text>
+        <Text style={styles.txt} >Enter the area below </Text>
         <TextInput
             style={styles.input}
             onChangeText={setArea}
@@ -85,8 +85,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: "center",
     // justifyContent: "center",
-    backgroundColor: "beige",
-    paddingTop: 20,
+    backgroundColor: "beige"
   },
   logo: {
     margin: 0,
@@ -101,8 +100,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '50%',
-    backgroundColor: '#6B1818',
-    shadowColor: '#6B1818',
+    backgroundColor: '#9FB1BC',
+    shadowColor: '#9FB1BC',
     shadowOpacity: 0.9,
     shadowOffset: {
       height: 10,
@@ -112,13 +111,19 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     fontSize:25,
+    color:'white',
     
   },
   image: {
     height:100,
     width:200,
     marginTop: 10,
+    borderRadius:10,
+    borderColor:'transparent',
   },
+  txt:{
+    fontSize:25,
+  }
     
 });
 

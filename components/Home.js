@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
     shadowRadius: 30,
   },
   buttonText:{
-    fontSize:20,
+    fontSize:20, 
+    color:'white',
     
   },
   modalText:{
