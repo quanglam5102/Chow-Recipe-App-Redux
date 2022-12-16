@@ -20,14 +20,7 @@ export default function Category({navigation}) {
   const onChangeSearch = (query) => setSearch(query);
   return (
     <View>
-      <TouchableOpacity
-        style={styles.reviewbutton}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={{fontSize: 20, left: 300}}>
-            Home
-          </Text>
-      </TouchableOpacity>
-      <Appbar style={{ backgroundColor: '#6B1818'}}>
+      <Appbar style={{ backgroundColor: '#6E8898'}}>
       {/* button for navigation, with the styling 
       to place the button in the top right corner. 
       Left the navigation empty for whatever the next page might be
@@ -41,7 +34,7 @@ export default function Category({navigation}) {
       </TouchableOpacity> */}
         <Appbar.Content title="Chow!" textAlign="center" />
         <Appbar.Header
-          style={{ backgroundColor: '#6B1818'}}></Appbar.Header>
+          style={{ backgroundColor: '#6E8898'}}></Appbar.Header>
       </Appbar>
       <Searchbar
         placeholder="search here"

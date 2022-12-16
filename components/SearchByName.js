@@ -9,11 +9,12 @@ import {
   FlatList,
   TextInput,
   Animated,
-  Easing
+  Easing,
+  TouchableOpacity
  
 } from 'react-native';
 
-const SearchByName = () => {
+const SearchByName = ({ navigation }) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
@@ -34,6 +35,7 @@ const SearchByName = () => {
 
 //  A filter to match the text that you inserted
   const searchFilterFunction = (text) => {
+console.log(masterDataSource)
     if (text) {
      
       const newData = masterDataSource.filter(function (item) {
@@ -73,12 +75,17 @@ const SearchByName = () => {
   };
 
   const header = useRef(new Animated.ValueXY({ x:5 , y: 200 })).current;  useEffect(() => {    
-    Animated.timing(header, {easing: Easing.bounce,toValue: 10,duration: 1000, useNativeDriver: false}).start();
+    Animated.timing(header, {easing: Easing.bounce,toValue: 10,duration: 1000, useNativeDriver: false,}).start();
   }, );
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:'beige', }}>
       <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('SearchByName')}>
+        <Text style={styles.buttonText}> Next </Text>
+      </TouchableOpacity>
       <Animated.View        
     style={{          
       position: 'center',          
@@ -130,8 +137,7 @@ const styles = StyleSheet.create({
     borderRadius:20,
     borderColor: '#6E8898',
     color:'#6E8898',
-    margin: 10,
-    
+    margin: 10, 
     
   },
   textInputStyle: {
@@ -142,12 +148,7 @@ const styles = StyleSheet.create({
     borderColor: '#6E8898',
     backgroundColor: '#FFFFFF',
     borderRadius:20,
-    color:'#6E8898',
-    
-    
-    
-    
-   
+    color:'#6E8898', 
   },
   ani:{
     fontSize:23,
@@ -155,10 +156,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    
-  
 
-  }
+  },
+  buttonText:{
+    fontSize:20,
+    color:'#6E8898',
+}
   
 });
 

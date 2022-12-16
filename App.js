@@ -4,34 +4,45 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/Home';
 import Login from './components/Login';
-import Register from './components/Register'; 
-import Recipes from './components/Recipes';
 import SignupScreen from './components/SignupScreen';
 import Category from './components/Category';
 import SearchById from './components/SearchById';
 import SearchByName from './components/SearchByName';
 import SearchByArea from './components/SearchByArea';
 import RandomMeal from './components/RandomMeal';
+import SearchEngine from './components/SearchEngine';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
-     <NavigationContainer>
+      <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen 
-            name="Signup" 
+          <Stack.Screen
+            name="Signup"
             component={SignupScreen}
             options={
-              {title: "Sign Up Page"}
+              { title: "Sign Up Page" }
             }
-            />
-          <Stack.Screen 
+          />
+          <Stack.Screen
+            name="Login"
+            component={Login}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          <Stack.Screen
+            name="SearchEngine"
+            component={SearchEngine}
+          />
+          <Stack.Screen
             name="Category"
             component={Category}
-            />
-            <Stack.Screen 
+          />
+          <Stack.Screen
             name="SearchById"
             component={SearchById}
           />
@@ -47,16 +58,8 @@ export default function App() {
             name="RandomMeal"
             component={RandomMeal}
           />
-          <Stack.Screen
-            name="Home"
-            component={Home}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-          />
         </Stack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
     </Provider>
 
   );

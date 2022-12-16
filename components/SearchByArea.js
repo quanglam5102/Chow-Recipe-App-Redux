@@ -64,7 +64,7 @@ function SearchByArea({ navigation }) {
             <View style={styles.container}>
             <Image style={styles.logo} source={require('../assets/logo.png')} />
             <Text style={styles.modalText}>
-                The meal id does not exist/ Please enter the valid meal id.
+                The area does not exist in the database/ Please enter another area.
             </Text>
             <Button title="Close" onPress={() => setShowModal(!showModal)} />
             </View>

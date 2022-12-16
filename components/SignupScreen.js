@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { addUser } from '../redux/actions/index';
-import { useState} from 'react'
+import { useState } from 'react'
 import {
   Button,
   View,
@@ -18,7 +18,7 @@ function Seperator() {
   return <View style={styles.seperator}></View>;
 }
 
-function SignupScreen({ navigation, addUser }) { 
+function SignupScreen({ navigation, addUser }) {
   const [first, onChangeText] = React.useState('');
   const [last, onChangeLast] = React.useState('');
   const [email, onChangeEmail] = React.useState('');
@@ -33,12 +33,12 @@ function SignupScreen({ navigation, addUser }) {
         addUser(username, pass)
       },
     },
-    { text: 'No', onPress: () => {} },
+    { text: 'No', onPress: () => { } },
   ];
   return (
     <View style={styles.container}>
-    <Image style={styles.logo} source={require('../assets/logo.png')} />
-    <Text>Sign Up To Start </Text>
+      <Image style={styles.logo} source={require('../assets/logo.png')} />
+      <Text>Sign Up To Start </Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -79,32 +79,21 @@ function SignupScreen({ navigation, addUser }) {
         }}>
         <Text style={styles.buttonText}> Sign Up! </Text>
       </TouchableOpacity>
-      <Seperator/> 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('SearchById')}>
-        <Text style={styles.buttonText}> Begin</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Category')}>
-        <Text style={styles.buttonText}> Category</Text>
-      </TouchableOpacity>
-
+      <Seperator />
       <Modal
         animationType="slide"
         transparent={false}
         visible={showModal}
-        onRequestClose={() => {}}>
+        onRequestClose={() => { }}>
         <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/logo.png')} />
-      <Text style={styles.modalText}>
+          <Image style={styles.logo} source={require('../assets/logo.png')} />
+          <Text style={styles.modalText}>
             You have successfully signed up and created a chow account! Click Start and enjoy learning more recipes with us.
           </Text>
           <Button title="Close" onPress={() => {
             setShowModal(!showModal);
-            navigation.navigate('Login');
-            }} />
+            navigation.navigate('SearchEngine');
+          }} />
         </View>
       </Modal>
     </View>
@@ -117,17 +106,17 @@ const styles = StyleSheet.create({
     margin: 10,
     borderWidth: 1,
     padding: 10,
-    borderRadius:10
+    borderRadius: 10
   },
   container: {
-    flex:1,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "beige"
   },
   logo: {
-    height:250,
-    width:200
+    height: 250,
+    width: 200
   },
   button: {
     display: 'flex',
@@ -136,8 +125,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '50%',
-    backgroundColor: '#6B1818',
-    shadowColor: '#6B1818',
+    backgroundColor: '##6E8898',
+    shadowColor: '##6E8898',
     shadowOpacity: 0.9,
     shadowOffset: {
       height: 10,
@@ -145,12 +134,12 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 25,
   },
-  buttonText:{
-    fontSize:25,
+  buttonText: {
+    fontSize: 25,
     // fontFamily: "arial"
-    
+
   },
-    seperator: { margin: 10 }
+  seperator: { margin: 10 }
 });
 
 const mapStateToProps = (state) => {

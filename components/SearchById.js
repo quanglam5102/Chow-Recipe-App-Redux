@@ -63,11 +63,6 @@ function SearchById({ navigation, fetchSearchById, mealById }) {
             onPress={search}>
             <Text style={styles.buttonText}> Search </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-            style={styles.button}
-            onPress={handleNavigate}>
-            <Text style={styles.buttonText}> Search By Name </Text>
-        </TouchableOpacity>
         {Object.keys(mealById).length > 0 && renderMeal() }
         <Modal
             animationType="slide"
