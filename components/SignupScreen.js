@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { addUser } from '../redux/actions/index';
 import { useState} from 'react'
 import {
   Button,
@@ -16,16 +18,19 @@ function Seperator() {
   return <View style={styles.seperator}></View>;
 }
 
-function SignupScreen({ navigation }) { 
+function SignupScreen({ navigation, addUser }) { 
   const [first, onChangeText] = React.useState('');
   const [last, onChangeLast] = React.useState('');
   const [email, onChangeEmail] = React.useState('');
   const [showModal, setShowModal] = useState(false);
+  const [username, setUsername] = useState('');
+  const [pass, setPass] = useState('');
   var button1 = [
     {
       text: 'Yes',
       onPress: () => {
         setShowModal(!showModal);
+        addUser(username, pass)
       },
     },
     { text: 'No', onPress: () => {} },
@@ -51,6 +56,17 @@ function SignupScreen({ navigation }) {
         onChangeText={onChangeEmail}
         value={email}
         placeholder="Email"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setUsername}
+        placeholder="Username"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setPass}
+        placeholder="Password"
+        secureTextEntry={true}
       />
       <TouchableOpacity
         style={styles.button}
@@ -85,7 +101,10 @@ function SignupScreen({ navigation }) {
       <Text style={styles.modalText}>
             You have successfully signed up and created a chow account! Click Start and enjoy learning more recipes with us.
           </Text>
-          <Button title="Close" onPress={() => setShowModal(!showModal)} />
+          <Button title="Close" onPress={() => {
+            setShowModal(!showModal);
+            navigation.navigate('Login');
+            }} />
         </View>
       </Modal>
     </View>
@@ -133,4 +152,17 @@ const styles = StyleSheet.create({
   },
     seperator: { margin: 10 }
 });
-export default SignupScreen;
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.productsReducer.users,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUser: (username, pass) => dispatch(addUser(username, pass)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

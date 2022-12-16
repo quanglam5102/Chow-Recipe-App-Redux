@@ -1,26 +1,26 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { addUser, fetchSearchById } from '../redux/actions/index';
 import { Button, View, Text, TextInput, StyleSheet, Image, TouchableOpacity,
-Modal, Alert, } from 'react-native';
+Modal,
+Alert, } from 'react-native';
 
-function SearchById({ navigation }) { 
+const NotFound = () => {
+  return (
+    <View>
+      <Text>Hello World</Text>
+    </View>
+  )
+}
+
+function SearchById({ navigation, fetchSearchById, mealById }) { 
   const [mealId, setMealId] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const [meal, setMeal] = useState({});
+  const [showModal, setShowModal] = useState(true);
 
   const search = () => {
-    setMeal({})
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
-    .then(res => res.json())
-    .then(result => {
-
-        if(result.meals == null) {
-            setShowModal(!showModal);
-        }
-        else {
-            setMeal(result.meals[0])
-        }
-    })
+     fetchSearchById(mealId);
+    
   }
 
   const handleNavigate = () => {
@@ -31,17 +31,25 @@ function SearchById({ navigation }) {
     return (
       <View style={{marginTop: 10}}>
         <View style={{ borderBottomColor: 'black', borderWidth: 1, margin: 5 }} />
-        <Text>Name: {meal.strMeal}</Text>
-        <Text>Category: {meal.strCategory}</Text>
-        <Text>Area: {meal.strArea}</Text>
+        <Text>Name: {mealById[0].strMeal}</Text>
+        <Text>Category: {mealById[0].strCategory}</Text>
+        <Text>Area: {mealById[0].strArea}</Text>
         <Image style={styles.image} source={{
-        uri: meal.strMealThumb
+        uri: mealById[0].strMealThumb
       }} />
       </View>
     )
   }
 
+  const notFound = () => {
+    setShowModal(!showModal);
+    return (
+      <View></View>
+    )
+  }
+
   return (
+  
     <View style={styles.container}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
         <Text>Enter the meal id to search below </Text>
@@ -60,21 +68,23 @@ function SearchById({ navigation }) {
             onPress={handleNavigate}>
             <Text style={styles.buttonText}> Search By Name </Text>
         </TouchableOpacity>
-        {Object.keys(meal).length > 0 ? renderMeal() : null}
+        {Object.keys(mealById).length > 0 && renderMeal() }
         <Modal
             animationType="slide"
             transparent={false}
             visible={showModal}
-            onRequestClose={() => {}}>
+            onRequestClose={() => {}}
+            >
             <View style={styles.container}>
             <Image style={styles.logo} source={require('../assets/logo.png')} />
             <Text style={styles.modalText}>
-                The meal id does not exist/ Please enter the valid meal id.
+                Please enter the exact meal id in order to view the details
             </Text>
             <Button title="Close" onPress={() => setShowModal(!showModal)} />
             </View>
-        </Modal>
+        </Modal> 
     </View>
+    
   );
 }
 const styles = StyleSheet.create({
@@ -126,4 +136,18 @@ const styles = StyleSheet.create({
     
 });
 
-export default SearchById;
+const mapStateToProps = (state) => {
+  return {
+    users: state.productsReducer.users,
+    mealById: state.productsReducer.mealById,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSearchById: (mealId) => fetchSearchById(dispatch, mealId),
+    addUser: (username, pass) => dispatch(addUser(username, pass)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchById);

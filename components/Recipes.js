@@ -5,8 +5,8 @@ export default function Recipes({navigation, route}) {
     return (
       <View>
         <Text>This is the Recipes Page</Text>
-        <Button title="Go to Products Page" onPress={() => {
-        navigation.navigate("Products")
+        <Button title="Go to Home Page" onPress={() => {
+        navigation.navigate("Home")
       }} />
       </View>
     );

@@ -8,7 +8,6 @@ import {
   Button,
   ScrollView
 } from 'react-native';
-import Constants from 'expo-constants';
 import ProgressBar from './ProgressBar';
 
 export default function App() {
@@ -60,7 +59,7 @@ export default function App() {
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
-      .finally(() => setTimeout(setLoading(false),2000));
+      .finally(() => setTimeout(function(){setLoading(false)},500));
   }, []);
 
   return (

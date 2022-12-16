@@ -1,23 +1,24 @@
-import { FETCH_PRODUCTS, ADD_PRODUCTS } from '../actionTypes/index';
+import { ADD_USER, FETCH_SEARCH_BY_ID } from '../actionTypes/index';
 
 const initialState = {
-  products: []
+  users: [],
+  mealById: [],
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ADD_PRODUCTS: {
-      // {
-        // products: []
-        // category: []
-      // }
-      // const products = action.payload.products;
-      // const categories = action.payload.categories
-      const { products } = action.payload;
+    case FETCH_SEARCH_BY_ID: {
+      const { mealById } = action.payload;
       return {
         ...state,
-        // products: products
-        products
+        mealById
+      }
+    }
+    case ADD_USER: {
+      const { username, pass } = action.payload;
+      return {
+        ...state,
+        users: [ ...state.users, {username, pass} ]
       }
     }
     default: {

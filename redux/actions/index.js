@@ -1,40 +1,38 @@
-import { FETCH_PRODUCTS, ADD_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, RESET_CART } from '../actionTypes/index';
+import {
+  ADD_USER, FETCH_SEARCH_BY_ID,
+} from '../actionTypes/index';
 
-const API_URL = "https://fakestoreapi.com/products?limit=5";
-
-export const fetchProducts = (dispatch) => {
-  fetch(API_URL)
+export const fetchSearchById = (dispatch,mealId) => {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
     .then(res => res.json())
-    .then(json => {
-      dispatch({
-        type: ADD_PRODUCTS,
-        payload: {
-          products: json
-        }
-      })
+    .then(result => {
+      if (result.meals == null) {
+        dispatch({
+          type: FETCH_SEARCH_BY_ID,
+          payload: {
+            mealById: []
+          }
+        })
+      }
+      else {
+        dispatch({
+          type: FETCH_SEARCH_BY_ID,
+          payload: {
+            mealById: result.meals
+          }
+        })
+        
+      }
+
     })
-}
 
-export const addToCart = (product) => {
+};
+
+export const addUser = (username, pass) => {
   return {
-    type: ADD_TO_CART,
+    type: ADD_USER,
     payload: {
-      product
+      username, pass
     }
   }
 };
-
-export const removeFromCart = (product) => {
-  return {
-    type: REMOVE_FROM_CART,
-    payload: {
-      product
-    }
-  }
-};
-
-export const resetCart = () => {
-  return {
-    type: RESET_CART
-  }
-}
