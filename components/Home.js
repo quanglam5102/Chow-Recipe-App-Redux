@@ -7,17 +7,18 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  StatusBar,
   ScrollView,
   Modal,
   Button,
   Alert
 } from 'react-native';
-
+// import { Appbar} from 'react-native-paper';
 
 function Seperator() {
   return <View style={styles.seperator}></View>;
 }
-function HomeScreen({ navigation }) {
+function HomeScreen() {
     const [showModal, setShowModal] = useState(false);
     var button1 = [
     {
@@ -31,11 +32,6 @@ function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
        <ScrollView>
-       <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}> Next </Text>
-      </TouchableOpacity>
       <Image style={styles.logo} source={require('../assets/logo.png')} />
          <TouchableOpacity
         style={styles.button}
@@ -102,8 +98,7 @@ const styles = StyleSheet.create({
     shadowRadius: 30,
   },
   buttonText:{
-    fontSize:20,
-    color:'#6E8898',
+    fontSize:20
   },
   modalText:{
     fontSize: 20
