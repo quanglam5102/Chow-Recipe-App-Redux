@@ -66,7 +66,7 @@ export default function App() {
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+      .finally(() => setTimeout(() => setLoading(false),800));
   }, []);
 
   const header = useRef(new Animated.ValueXY({ x: 5, y: 200 })).current;
@@ -88,8 +88,8 @@ export default function App() {
             progress={progress}
             max={100}
             min={0}
-            backColor={'#6B1818'}
-            barColor={'#dbdb9f'}
+            backColor={'#2E5266'}
+            barColor={'white'}
             borderColor={'#6b4118'}
           />
         ) : (
