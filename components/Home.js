@@ -23,6 +23,7 @@ const FadeIn = (props) => {
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 5000,
+      useNativeDriver: false,
     }).start();
   }, [fadeAnim]);
 
@@ -49,11 +50,11 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
        <ScrollView>
        <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}> Next </Text>
+        onPress={() => navigation.navigate('SearchEngine')}>
+        <Text style={styles.buttonText}> Search Engine </Text>
       </TouchableOpacity>
       <FadeIn>
-      <Image style={styles.logo} source={require('./logo.png')} />
+      <Image style={styles.logo} source={require('../assets/logo.png')} />
       </FadeIn>
          <TouchableOpacity
         style={styles.button}
@@ -72,7 +73,7 @@ function HomeScreen({ navigation }) {
         visible={showModal}
         onRequestClose={() => {}}>
         <View style={styles.container}>
-        <Image style={styles.logo} source={require('./logo.png')} />
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
       <Text style={styles.modalText}>
             Welcome to CHOW food recipes where you’ll be able to learn how to make amazing dishes with the help of our many features. You’ll be able to browse through dozens of recipes with the ingredients to go with it. You’ll also be able to search for specific meals you want to to enjoy from all over the world all here. We love to make cooking EASY!
           </Text>

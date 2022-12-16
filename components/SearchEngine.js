@@ -21,7 +21,6 @@ function SearchEngine({ navigation, addUser }) {
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={require('../assets/logo.png')} />
-            <Text>Searching Engine </Text>
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => navigation.navigate('SearchById')}>

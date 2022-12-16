@@ -92,7 +92,7 @@ function SignupScreen({ navigation, addUser }) {
           </Text>
           <Button title="Close" onPress={() => {
             setShowModal(!showModal);
-            navigation.navigate('SearchEngine');
+            navigation.navigate('Home');
           }} />
         </View>
       </Modal>
