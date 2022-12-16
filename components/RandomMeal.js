@@ -5,10 +5,17 @@ import {
   StyleSheet,
   SafeAreaView,
   FlatList,
-  Button,
-  ScrollView
+  Image,
+  ScrollView,
+  Animated,
+  Easing,
 } from 'react-native';
+import Constants from 'expo-constants';
 import ProgressBar from './ProgressBar';
+
+function Seperator() {
+  return <View style={styles.seperator}></View>;
+}
 
 export default function App() {
   const [isLoading, setLoading] = useState(true);
@@ -59,58 +66,94 @@ export default function App() {
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
-      .finally(() => setTimeout(function(){setLoading(false)},500));
+      .finally(() => setLoading(false));
   }, []);
 
+  const header = useRef(new Animated.ValueXY({ x: 5, y: 200 })).current;
+  useEffect(() => {
+    Animated.timing(header, {
+      easing: Easing.bounce,
+      toValue: 10,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+  });
+
   return (
-    <SafeAreaView style={styles.container}>
-    {/* <ScrollView> */}
-      {isLoading ? (
-        <ProgressBar
-          progress={progress}
-          max={100}
-          min={0}
-          backColor={'#6B1818'}
-          barColor={'#dbdb9f'}
-          borderColor={'#6b4118'}
-        />
-      ) : (
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}>
-          <Text>
-            <Text style={styles.h1Text}>{data['meals'][0].strMeal}</Text>
-            {'\n'}
-            <Text style={styles.h2Text}>{data['meals'][0].strCategory}</Text>
-            {'\n'}
+    
+      <SafeAreaView style={styles.container}>
+        {/* <ScrollView> */}
+        {isLoading ? (
+          <ProgressBar
+            progress={progress}
+            max={100}
+            min={0}
+            backColor={'#6B1818'}
+            barColor={'#dbdb9f'}
+            borderColor={'#6b4118'}
+          />
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}>
+               <ScrollView>
+            <Animated.View
+              style={{
+                position: 'center',
+                top: header.x,
+                left: header.y,
+                backgroundColor: '#6E8898',
+                padding: 20,
+                borderRadius: 30,
+                margin: 10,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              
+              <Text style={styles.h1Text}>{data['meals'][0].strMeal}</Text>
+            </Animated.View>
+            <Seperator/>
+
             <Text style={styles.h3Text}>{data['meals'][0].strArea}</Text>
-            {'\n'}
-            {'\n'}
-            <Text style={styles.h4Text}>Ingredients:{'  '}</Text>
-            </Text>
-            <FlatList
-              style={styles.contentText}
-              data={MakeIngredients(data)}
-              keyExtractor={(item, index) => index}
-              renderItem={({ item }) => (
-                <Text>
-                  •{item[1]} [{item[0]}]{' '}
-                </Text>
-              )}
+            
+
+            <Text style={styles.h2Text}>{data['meals'][0].strCategory}</Text>
+            
+
+            <Image
+              source={{
+                uri: `${data['meals'][0].strMealThumb}`,
+              }}
+              style={styles.image}
             />
+            <Seperator />
             <Text>
-            <Text style={styles.h4Text}>Instructions:{'\n'}</Text>
-            <Text style={styles.contentText}>
-              {data['meals'][0].strInstructions}
+              <Text style={styles.h4Text}>Ingredients:{'  '}</Text>
             </Text>
-          </Text>
-        </View>
-      )}
-      {/* </ScrollView> */}
-    </SafeAreaView>
+           
+            {MakeIngredients(data).map((item)=> (
+                <Text key={item}>
+                  •{item[1]} [{item[0]}]{' '}
+                  {/* {item['meals'][0].strInstructions} */}
+                </Text>
+              ))}
+            <Text>
+              {'\n'}
+              <Text style={styles.h4Text}>Instructions:{'\n'}</Text>
+              <Text style={styles.contentText}>
+                {data['meals'][0].strInstructions}
+              </Text>
+            </Text>
+            </ScrollView>
+          </View>
+        )}
+        {/* </ScrollView> */}
+      </SafeAreaView>
+     
   );
 }
 
@@ -122,26 +165,41 @@ const styles = StyleSheet.create({
     backgroundColor: 'beige',
   },
   contentText: {
-    fontSize: 18,
+    fontSize: 20,
+
+    //fontFamily: 'roboto',
   },
   h1Text: {
     fontSize: 30,
+    //fontFamily: 'monospace',
     fontWeight: 'bold',
-    color: '#6B1818',
+    color: 'white',
   },
   h2Text: {
-    fontSize: 28,
+    fontSize: 30,
+    //fontFamily: 'monospace',
     fontWeight: 'bold',
-    color: '#6b4118',
+    color: '#2E5266',
   },
   h3Text: {
-    fontSize: 24,
+    fontSize: 30,
+    //fontFamily: 'monospace',
     fontWeight: 'bold',
-    color: '#6B1818',
+    color: '#2E5266',
   },
   h4Text: {
-    fontSize: 20,
+    fontSize: 30,
+    //fontFamily: 'monospace',
     fontWeight: 'bold',
-    color: '#6b4118',
+    color: '#2E5266',
   },
+  image: {
+    height: 200,
+    width: 300,
+    marginTop: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor:'transparent',
+  },
+  seperator: { margin: 10 },
 });

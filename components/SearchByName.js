@@ -35,7 +35,6 @@ const SearchByName = ({ navigation }) => {
 
 //  A filter to match the text that you inserted
   const searchFilterFunction = (text) => {
-console.log(masterDataSource)
     if (text) {
      
       const newData = masterDataSource.filter(function (item) {
@@ -81,11 +80,6 @@ console.log(masterDataSource)
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:'beige', }}>
       <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('SearchByName')}>
-        <Text style={styles.buttonText}> Next </Text>
-      </TouchableOpacity>
       <Animated.View        
     style={{          
       position: 'center',          

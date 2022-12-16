@@ -41,7 +41,7 @@ function Login({ navigation, users }) {
   return (
     <View style={styles.container}>
     <Image style={styles.logo} source={require('../assets/logo.png')} />
-    <Text>Sign Up To Start </Text>
+    <Text>Login To Start </Text>
       <TextInput
         style={styles.input}
         onChangeText={setUsername}

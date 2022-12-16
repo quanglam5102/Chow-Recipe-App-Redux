@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react'
 import { Button, View, Text, TextInput, StyleSheet, Image, TouchableOpacity,
 Modal, Alert, FlatList, } from 'react-native';
 
-function SearchByArea({ navigation }) { 
-  const [area, setArea] = useState('');
+function SearchByIngredient({ navigation }) { 
+  const [ingredient, setIngredient] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [meals, setMeal] = useState([]);
 
   const search = () => {
     setMeal({})
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
     .then(res => res.json())
     .then(result => {
 
@@ -23,7 +23,7 @@ function SearchByArea({ navigation }) {
     })
   }
 
-  const renderMealByArea = ({ item }) => {
+  const renderMealByIngredient = ({ item }) => {
     return (
       <View style={{marginTop: 10}}>
         <View style={{ borderBottomColor: 'black', borderWidth: 1, margin: 5 }} />
@@ -39,11 +39,11 @@ function SearchByArea({ navigation }) {
   return (
     <View style={styles.container}>
         {/* <Image style={styles.logo} source={require('../assets/logo.png')} /> */}
-        <Text>Enter the area below </Text>
+        <Text>Enter the ingredient below </Text>
         <TextInput
             style={styles.input}
-            onChangeText={setArea}
-            placeholder="Enter Area"
+            onChangeText={setIngredient}
+            placeholder="Enter Ingredient"
         />
         <TouchableOpacity
             style={styles.button}
@@ -54,7 +54,7 @@ function SearchByArea({ navigation }) {
         <FlatList
         style={{ height: '30%' }}
         data={meals}
-        renderItem={renderMealByArea}
+        renderItem={renderMealByIngredient}
         />
         <Modal
             animationType="slide"
@@ -62,9 +62,9 @@ function SearchByArea({ navigation }) {
             visible={showModal}
             onRequestClose={() => {}}>
             <View style={styles.container}>
-            <Image style={styles.logo} source={require('../assets/logo.png')} />
+            
             <Text style={styles.modalText}>
-                The area does not exist in the database/ Please enter another area.
+                The meal id does not exist/ Please enter the valid meal id.
             </Text>
             <Button title="Close" onPress={() => setShowModal(!showModal)} />
             </View>
@@ -122,4 +122,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default SearchByArea;
+export default SearchByIngredient;

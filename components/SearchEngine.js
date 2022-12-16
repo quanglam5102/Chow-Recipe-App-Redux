@@ -47,6 +47,11 @@ function SearchEngine({ navigation, addUser }) {
                 onPress={() => navigation.navigate('RandomMeal')}>
                 <Text style={styles.buttonText}> Random Meal</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('SearchByIngredient')}>
+                <Text style={styles.buttonText}> Search By Ingredient</Text>
+            </TouchableOpacity>
         </View>
     );
 }
