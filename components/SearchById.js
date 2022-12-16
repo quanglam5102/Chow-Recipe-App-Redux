@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '50%',
-    backgroundColor: '#6B1818',
-    shadowColor: '#6B1818',
+    backgroundColor: '#9FB1BC',
+    shadowColor: '#9FB1BC',
     shadowOpacity: 0.9,
     shadowOffset: {
       height: 10,
@@ -127,6 +127,8 @@ const styles = StyleSheet.create({
     height:100,
     width:200,
     marginTop: 10,
+    borderRadius:10,
+    borderColor:'transparent',
   },
     
 });
